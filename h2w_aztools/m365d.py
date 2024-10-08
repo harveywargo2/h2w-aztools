@@ -1,9 +1,8 @@
-import json
 import requests
 import pandas as pd
 
 
-class RunHuntingQuery:
+class XdrRunAhtQuery:
 
     def __init__(self, **kwargs):
         self.oath_token = kwargs.get('oath_token', 'error')
@@ -21,7 +20,10 @@ class RunHuntingQuery:
         self.response_df = self._to_df()
 
     def _to_df(self):
-        adh_df = pd.DataFrame.from_dict(self.response_json['results'])
+        if 'results' in self.response_json:
+            adh_df = pd.DataFrame.from_dict(self.response_json['results'])
+        else:
+            adh_df = pd.DataFrame.from_dict(self.response_json['error'])
 
         return adh_df
 
