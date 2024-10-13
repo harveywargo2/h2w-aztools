@@ -20,13 +20,13 @@ class XdrRunAhtQuery:
 
     def __init__(self, oath_token='null', query_text='null'):
         """
-        ets attributes for instance of object
+        sets attributes for instance of object
 
         :param oath_token: (str) graph api bearer token
         :param query_text: (str) advanced hunting query text
         """
 
-        # kwargs
+        # parameters
         self.oath_token = oath_token
         self.query_text = query_text
 
@@ -78,7 +78,7 @@ class XdrListCustomRules:
         :param oath_token: (str) mtp api bearer token
         """
 
-        # kwargs
+        # parameter
         self.oath_token = oath_token
 
         # attributes
