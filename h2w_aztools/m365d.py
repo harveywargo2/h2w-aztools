@@ -12,7 +12,7 @@ class XdrRunAhtQuery:
     ----------
         query_json (dict) : api query formatting
         request_url (str) : hardcoded request api url
-        request_headers (str) : hardcoded request headers
+        request_headers (dict) : hardcoded request headers
         response_json (dict) : response from api call
         pull_date (datetime) : timestamp of api call
         response_df (dataframe) : convert to pandas dataframe object
@@ -66,7 +66,7 @@ class XdrListCustomRules:
     attributes
     ----------
         request_url (str) : hardcoded request api url
-        request_headers (str) : hardcoded request headers
+        request_headers (dict) : hardcoded request headers
         response_json (dict) : response from api call
         pull_date (datetime) : timestamp of api call
     """
