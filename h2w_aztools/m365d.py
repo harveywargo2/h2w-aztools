@@ -18,17 +18,17 @@ class XdrRunAhtQuery:
         response_df (dataframe) : convert to pandas dataframe object
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, oath_token='null', query_text='null'):
         """
-        constructs the attributes for the object
+        ets attributes for instance of object
 
-        :param kwargs:
-            oauth_token= (str) : bearer token from Graph api
-            query_text= (str) : kql query in string to run
+        :param oath_token: (str) graph api bearer token
+        :param query_text: (str) advanced hunting query text
         """
+
         # kwargs
-        self.oath_token = kwargs.get('oath_token', 'error')
-        self.query_text = kwargs.get('query_text', 'error')
+        self.oath_token = oath_token
+        self.query_text = query_text
 
         # attributes
         self.query_json = {'query': self.query_text}
@@ -49,8 +49,7 @@ class XdrRunAhtQuery:
         """
         converts dict/json to pandas dataframe
 
-        :return:
-            dataframe stored in attribute
+        :return: dataframe stored in attribute
         """
         if 'results' in self.response_json:
             adh_df = pd.DataFrame.from_dict(self.response_json['results'])
@@ -72,15 +71,15 @@ class XdrListCustomRules:
         pull_date (datetime) : timestamp of api call
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, oath_token='null'):
         """
-        constructs the attributes for the object
+        sets attributes for instance of object
 
-        :param kwargs:
-            oauth_token= (str) : bearer token from MTP api
+        :param oath_token: (str) mtp api bearer token
         """
+
         # kwargs
-        self.oath_token = kwargs.get('oath_token', 'error')
+        self.oath_token = oath_token
 
         # attributes
         self.request_url = 'https://api.security.microsoft.com/api/CustomDetections'
