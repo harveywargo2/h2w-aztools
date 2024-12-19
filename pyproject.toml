@@ -5,9 +5,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 
-name = "aesoppy"
-version = "1.0.2"
-description = "Python Library for Data Wrangling and API Interactions on Stock Market Data"
+name = "h2w-aztools"
+version = "1.0.0"
+description = "Python Blue Teamer Library for Interacting with Azure API"
 readme = "README.md"
 authors = [{ name = "Harvey Wargo"}]
 license = {file = "LICENSE.txt"}
