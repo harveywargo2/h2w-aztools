@@ -1,0 +1,14 @@
+LICENSE.txt
+README.md
+pyproject.toml
+aztools/__init__.py
+aztools/azmonitor.py
+aztools/loganalytics.py
+aztools/m365d.py
+aztools/oauth.py
+aztools/sentinel.py
+h2w_aztools.egg-info/PKG-INFO
+h2w_aztools.egg-info/SOURCES.txt
+h2w_aztools.egg-info/dependency_links.txt
+h2w_aztools.egg-info/requires.txt
+h2w_aztools.egg-info/top_level.txt
