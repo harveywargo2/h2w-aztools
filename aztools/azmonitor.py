@@ -3,27 +3,9 @@ import pandas as pd
 
 
 class AzMonitorRunQuery:
-    """A class to store and instance of data from an API call to run a query against azure monitor data
 
-    ```
-    attributes
-    ----------
-        query_json (dict) : api query formatting
-        request_url (str) : hardcoded request api url
-        request_headers (dict) : hardcoded request headers
-        response_json (dict) : response from api call
-        pull_date (datetime) : timestamp of api call
-        response_df (dataframe) : convert to pandas dataframe object
-    """
 
-    def __init__(self, oauth_token='null', query_text='null', workspace_id='null'):
-        """
-        sets attributes for instance of object
-
-        :param oauth_token: (str) graph api bearer token
-        :param query_text: (str) advanced hunting query text
-        :param workspace_id: (str) azure monitor workspace id
-        """
+    def __init__(self, oauth_token, query_text, workspace_id):
 
         # parameters
         self.oauth_token = oauth_token
@@ -44,12 +26,8 @@ class AzMonitorRunQuery:
                                               json=self.query_json).json()
         self.response_df = self._to_df()
 
-    def _to_df(self):
-        """
-        converts dict/json to pandas dataframe
 
-        :return: dataframe stored in attribute
-        """
+    def _to_df(self):
         col_names_df = []
 
         if 'tables' in self.response_json:
