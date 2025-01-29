@@ -1,30 +1,10 @@
 import requests
 
 
-class AzureOathGraph:
-    """
-    Class Object for calls to azure graph api
-    ```
-    Attributes
-    ----------
-        graph_auth (str) : azure graph url for tenant
-        graph_resource_url (str) : azure oath token grant for graph api
-        request_header (dict) : hardcoded request headers
-        request_body (dict) : hardcoded request body
-        response_json (dict) : json api response
-        token_typ (str or dict) : token type issued from azure
-        access_token (str or dict) : access token granted
+class OathGraph:
 
-    """
 
     def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
-        """
-        sets attributes for instance of object
-
-        :param tenant_id: (str) azure tenant id
-        :param client_id: (str) client identifier from aad-app/service principal
-        :param client_secret: (str) client secret from aad-app/service principal
-        """
 
         # parameters
         self.tenant_id = tenant_id
@@ -42,8 +22,8 @@ class AzureOathGraph:
             'grant_type': 'client_credentials'
         }
         self.response_json = requests.request('POST', self.graph_auth,
-                                               headers=self.request_header,
-                                               data=self.request_body).json()
+                                              headers=self.request_header,
+                                              data=self.request_body).json()
 
         self.token_type = self._token_type()
         self.access_token = self._access_token()
@@ -57,6 +37,7 @@ class AzureOathGraph:
 
         return output
 
+
     def _access_token(self):
         if 'access_token' in self.response_json:
             output = self.response_json['access_token']
@@ -66,30 +47,10 @@ class AzureOathGraph:
         return output
 
 
-class AzureOathMde:
-    """
-    Class Object for calls to MSFT XDR Defender Endpoint api
-    ```
-    Attributes
-    ----------
-        graph_auth (str) : azure graph url for tenant
-        graph_resource_url (str) : azure oath token grant for MDE api
-        request_header (dict) : hardcoded request headers
-        request_body (dict) : hardcoded request body
-        response_json (dict) : json api response
-        token_typ (str or dict) : token type issued from azure
-        access_token (str or dict) : access token granted
+class OathMde:
 
-    """
 
     def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
-        """
-        sets attributes for instance of object
-
-        :param tenant_id: (str) azure tenant id
-        :param client_id: (str) client identifier from aad-app/service principal
-        :param client_secret: (str) client secret from aad-app/service principal
-        """
 
         # parameters
         self.tenant_id = tenant_id
@@ -107,11 +68,12 @@ class AzureOathMde:
             'grant_type': 'client_credentials'
         }
         self.response_json = requests.request('POST', self.mde_auth,
-                                               headers=self.request_header,
-                                               data=self.request_body).json()
+                                              headers=self.request_header,
+                                              data=self.request_body).json()
 
         self.token_type = self._token_type()
         self.access_token = self._access_token()
+
 
     def _token_type(self):
         if 'token_type' in self.response_json:
@@ -120,6 +82,7 @@ class AzureOathMde:
             output = self.response_json['error']
 
         return output
+
 
     def _access_token(self):
         if 'access_token' in self.response_json:
@@ -130,30 +93,10 @@ class AzureOathMde:
         return output
 
 
-class AzureOathLogAnalytics:
-    """
-    Class Object for calls to azure log analytics/azuremonitor api
-    ```
-    Attributes
-    ----------
-        graph_auth (str) : azure graph url for tenant
-        graph_resource_url (str) : azure oath token grant for Log Analytics/Azure Monitor api
-        request_header (dict) : hardcoded request headers
-        request_body (dict) : hardcoded request body
-        response_json (dict) : json api response
-        token_typ (str or dict) : token type issued from azure
-        access_token (str or dict) : access token granted
+class OathLogAnalytics:
 
-    """
 
-    def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
-        """
-        sets attributes for instance of object
-
-        :param tenant_id: (str) azure tenant id
-        :param client_id: (str) client identifier from aad-app/service principal
-        :param client_secret: (str) client secret from aad-app/service principal
-        """
+    def __init__(self, tenant_id, client_id, client_secret):
 
         # parameters
         self.tenant_id = tenant_id
@@ -171,11 +114,12 @@ class AzureOathLogAnalytics:
             'grant_type': 'client_credentials'
         }
         self.response_json = requests.request('POST', self.la_auth,
-                                               headers=self.request_header,
-                                               data=self.request_body).json()
+                                              headers=self.request_header,
+                                              data=self.request_body).json()
 
         self.token_type = self._token_type()
         self.access_token = self._access_token()
+
 
     def _token_type(self):
         if 'token_type' in self.response_json:
@@ -184,6 +128,7 @@ class AzureOathLogAnalytics:
             output = self.response_json['error']
 
         return output
+
 
     def _access_token(self):
         if 'access_token' in self.response_json:
@@ -194,30 +139,10 @@ class AzureOathLogAnalytics:
         return output
 
 
-class AzureOathArm:
-    """
-    Class Object for calls to azure resource manager api
-    ```
-    Attributes
-    ----------
-        graph_auth (str) : azure graph url for tenant
-        graph_resource_url (str) : azure oath token grant for arm api
-        request_header (dict) : hardcoded request headers
-        request_body (dict) : hardcoded request body
-        response_json (dict) : json api response
-        token_typ (str or dict) : token type issued from azure
-        access_token (str or dict) : access token granted
+class OathArm:
 
-    """
 
     def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
-        """
-        sets attributes for instance of object
-
-        :param tenant_id: (str) azure tenant id
-        :param client_id: (str) client identifier from aad-app/service principal
-        :param client_secret: (str) client secret from aad-app/service principal
-        """
 
         # parameters
         self.tenant_id = tenant_id
@@ -235,11 +160,12 @@ class AzureOathArm:
             'grant_type': 'client_credentials'
         }
         self.response_json = requests.request('POST', self.arm_auth,
-                                               headers=self.request_header,
-                                               data=self.request_body).json()
+                                              headers=self.request_header,
+                                              data=self.request_body).json()
 
         self.token_type = self._token_type()
         self.access_token = self._access_token()
+
 
     def _token_type(self):
         if 'token_type' in self.response_json:
@@ -248,6 +174,7 @@ class AzureOathArm:
             output = self.response_json['error']
 
         return output
+
 
     def _access_token(self):
         if 'access_token' in self.response_json:
