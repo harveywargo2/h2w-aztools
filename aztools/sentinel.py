@@ -1,6 +1,8 @@
 from aztools.azmonitor import AzMonitorRunQuery
 import requests
 import datetime
+import json
+import pandas as pd
 
 
 class SentinelRunQuery(AzMonitorRunQuery):
@@ -33,4 +35,20 @@ class SentinelListRules:
                                               self.request_url,
                                               headers=self.request_headers).json()
         self.pull_date = datetime.datetime.now()
+
+        # wrangled attributes
+        self.flat_df = self._flat()
+
+
+    def _flat(self):
+        df1 = pd.DataFrame(self.response_json)
+        df1 = pd.concat([df1, df1['value'].apply(pd.Series)], axis=1)
+        df1 = pd.concat([df1, df1['properties'].apply(pd.Series)], axis=1)
+        df1 = pd.concat([df1, df1['eventGroupingSettings'].apply(pd.Series)], axis=1)
+        df1 = pd.concat([df1, df1['incidentConfiguration'].apply(pd.Series)], axis=1)
+        df1 = pd.concat([df1, df1['groupingConfiguration'].apply(pd.Series)], axis=1)
+
+        df1['rule_dump_date'] = datetime.datetime.now(datetime.timezone.utc)
+
+        return df1
 
