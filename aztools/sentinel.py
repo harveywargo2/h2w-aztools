@@ -37,10 +37,11 @@ class SentinelListRules:
         self.pull_date = datetime.datetime.now()
 
         # wrangled attributes
-        self.flat_df = self._flat()
+        self.flat_retained_df = self._flat_retained()
+        self.flat_renamed_df = self._flat_renamed()
 
 
-    def _flat(self):
+    def _flat_retained(self):
         df1 = pd.DataFrame(self.response_json)
         df1 = pd.concat([df1, df1['value'].apply(pd.Series)], axis=1)
         df1 = pd.concat([df1, df1['properties'].apply(pd.Series)], axis=1)
@@ -49,6 +50,51 @@ class SentinelListRules:
         df1 = pd.concat([df1, df1['groupingConfiguration'].apply(pd.Series)], axis=1)
 
         df1['rule_dump_date'] = datetime.datetime.now(datetime.timezone.utc)
+
+        return df1
+
+
+    def _flat_renamed(self):
+
+        df1 = pd.DataFrame(self.response_json)
+        df1['rule_dump_date'] = datetime.datetime.now(datetime.timezone.utc)
+        df1 = pd.concat([df1, df1['value'].apply(pd.Series)], axis=1)
+        df1 = df1.drop('value', axis=1)
+        df1.rename(columns={'id': 'rule_path', 'name': 'rule_guid'}, inplace=True)
+        df1 = pd.concat([df1, df1['properties'].apply(pd.Series)], axis=1)
+        df1.rename(columns={'queryFrequency': 'rule_run_every',
+                            'queryPeriod': 'rule_query_lookback',
+                            'triggerOperator': 'rule_trigger',
+                            'triggerThreshold': 'rule_trigger_threshold'
+                            }, inplace=True)
+        df1 = df1.drop('properties', axis=1)
+        df1.rename(columns={'customDetails': 'custom_details',
+                            'entityMappings': 'entity_map',
+                            'query': 'rule_query',
+                            'suppressionDuration': 'rule_suppresion_duration',
+                            'suppressionEnabled': 'rule_suppresion_active',
+                            'displayName': 'rule_name',
+                            'enabled': 'rule_enabled',
+                            'description': 'rule_description',
+                            'alertRuleTemplateName': 'rule_template',
+                            'lastModifiedUtc': 'rule_last_modified_utc',
+                            'alertDetailsOverride': 'alert_details_override',
+                            'eventGroupingSettings': 'event_grouping'
+                            }, inplace=True)
+        df1 = pd.concat([df1, df1['incidentConfiguration'].apply(pd.Series)], axis=1)
+        df1.rename(columns={'createIncident': 'create_incident'
+                            }, inplace=True)
+        df1 = df1.drop('incidentConfiguration', axis=1)
+        df1 = pd.concat([df1, df1['groupingConfiguration'].apply(pd.Series)], axis=1)
+        df1.rename(columns={'enabled': 'incident_alert_groupby',
+                            'reopenClosedIncident': 'incident_reopen',
+                            'lookbackDuration': 'incident_groupby_time',
+                            'matchingMethod': 'incident_groupby_method',
+                            'groupByEntities': 'incident_groupby_entities',
+                            'groupByAlertDetails': 'incident_groupby_alert_details',
+                            'groupByCustomDetails': 'incident_groupby_custom_details',
+                            }, inplace=True)
+        df1 = df1.drop('groupingConfiguration', axis=1)
 
         return df1
 
