@@ -4,27 +4,8 @@ import datetime
 
 
 class XdrRunAhtQuery:
-    """A class to store and instance of data from an API call to run a query against MSFT XDR advanced
-    hunting table
 
-    ```
-    attributes
-    ----------
-        query_json (dict) : api query formatting
-        request_url (str) : hardcoded request api url
-        request_headers (dict) : hardcoded request headers
-        response_json (dict) : response from api call
-        pull_date (datetime) : timestamp of api call
-        response_df (dataframe) : convert to pandas dataframe object
-    """
-
-    def __init__(self, oauth_token='null', query_text='null'):
-        """
-        sets attributes for instance of object
-
-        :param oauth_token: (str) graph api bearer token
-        :param query_text: (str) advanced hunting query text
-        """
+    def __init__(self, oauth_token, query_text):
 
         # parameters
         self.oath_token = oauth_token
@@ -46,11 +27,6 @@ class XdrRunAhtQuery:
         self.response_df = self._to_df()
 
     def _to_df(self):
-        """
-        converts dict/json to pandas dataframe
-
-        :return: dataframe stored in attribute
-        """
         if 'results' in self.response_json:
             adh_df = pd.DataFrame.from_dict(self.response_json['results'])
         else:
@@ -60,23 +36,8 @@ class XdrRunAhtQuery:
 
 
 class XdrListCustomRules:
-    """A class to store and instance of data from an API call to retrieve custom detection from MSFT XDR
 
-    ```
-    attributes
-    ----------
-        request_url (str) : hardcoded request api url
-        request_headers (dict) : hardcoded request headers
-        response_json (dict) : response from api call
-        pull_date (datetime) : timestamp of api call
-    """
-
-    def __init__(self, oauth_token='null'):
-        """
-        sets attributes for instance of object
-
-        :param oauth_token: (str) graph api bearer token
-        """
+    def __init__(self, oauth_token):
 
         # parameter
         self.oath_token = oauth_token
