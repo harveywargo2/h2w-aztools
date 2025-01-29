@@ -5,6 +5,7 @@ import datetime
 
 class XdrRunAhtQuery:
 
+
     def __init__(self, oauth_token, query_text):
 
         # parameters
@@ -26,6 +27,7 @@ class XdrRunAhtQuery:
         self.pull_date = datetime.datetime.now()
         self.response_df = self._to_df()
 
+
     def _to_df(self):
         if 'results' in self.response_json:
             adh_df = pd.DataFrame.from_dict(self.response_json['results'])
@@ -36,6 +38,7 @@ class XdrRunAhtQuery:
 
 
 class XdrListCustomRules:
+
 
     def __init__(self, oauth_token):
 
