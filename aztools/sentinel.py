@@ -62,22 +62,22 @@ class SentinelListRules:
         df1 = df1.drop('value', axis=1)
         df1.rename(columns={'id': 'rule_path', 'name': 'rule_guid'}, inplace=True)
         df1 = pd.concat([df1, df1['properties'].apply(pd.Series)], axis=1)
-        df1.rename(columns={'queryFrequency': 'rule_run_every',
-                            'queryPeriod': 'rule_query_lookback',
-                            'triggerOperator': 'rule_trigger',
-                            'triggerThreshold': 'rule_trigger_threshold'
+        df1.rename(columns={'queryFrequency': 'run_every',
+                            'queryPeriod': 'query_lookback',
+                            'triggerOperator': 'trigger_operator',
+                            'triggerThreshold': 'trigger_threshold'
                             }, inplace=True)
         df1 = df1.drop('properties', axis=1)
         df1.rename(columns={'customDetails': 'custom_details',
                             'entityMappings': 'entity_map',
-                            'query': 'rule_query',
-                            'suppressionDuration': 'rule_suppresion_duration',
-                            'suppressionEnabled': 'rule_suppresion_active',
+                            'query': 'query',
+                            'suppressionDuration': 'suppression_duration',
+                            'suppressionEnabled': 'suppression_active',
                             'displayName': 'rule_name',
-                            'enabled': 'rule_enabled',
-                            'description': 'rule_description',
+                            'enabled': 'enabled',
+                            'description': 'description',
                             'alertRuleTemplateName': 'rule_template',
-                            'lastModifiedUtc': 'rule_last_modified_utc',
+                            'lastModifiedUtc': 'last_modified_date',
                             'alertDetailsOverride': 'alert_details_override',
                             'eventGroupingSettings': 'event_grouping'
                             }, inplace=True)
