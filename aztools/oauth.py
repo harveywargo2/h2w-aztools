@@ -4,7 +4,7 @@ import requests
 class OathGraph:
 
 
-    def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
+    def __init__(self, tenant_id: str, client_id: str, client_secret: str):
 
         # parameters
         self.tenant_id = tenant_id
@@ -50,7 +50,7 @@ class OathGraph:
 class OathMde:
 
 
-    def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
+    def __init__(self, tenant_id: str, client_id: str, client_secret: str):
 
         # parameters
         self.tenant_id = tenant_id
@@ -96,7 +96,7 @@ class OathMde:
 class OathLogAnalytics:
 
 
-    def __init__(self, tenant_id, client_id, client_secret):
+    def __init__(self, tenant_id: str, client_id: str, client_secret: str):
 
         # parameters
         self.tenant_id = tenant_id
@@ -142,7 +142,7 @@ class OathLogAnalytics:
 class OathArm:
 
 
-    def __init__(self, tenant_id='null', client_id='null', client_secret='null'):
+    def __init__(self, tenant_id: str, client_id: str, client_secret: str):
 
         # parameters
         self.tenant_id = tenant_id
