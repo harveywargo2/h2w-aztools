@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 [project]
 
 name = "h2w-aztools"
-version = "1.0.0"
+version = "1.1.0"
 description = "Python Blue Teamer Library for Interacting with Azure API"
 readme = "README.md"
 authors = [{ name = "Harvey Wargo"}]
