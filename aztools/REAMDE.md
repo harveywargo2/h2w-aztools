@@ -1,10 +1,11 @@
 # Azure Oath 
 
-# QRT - Action to Oath Tokens 
-| Action                                     | Oauth Url                   |
-|:-------------------------------------------|:----------------------------|
-| Run Sentinel/Log Analytics/AzMonitor Query | https://api.loganalytics.io |
-| Run M365D XDR AHT Query                    | https://graph.microsoft.com |
+# Azure Action to Oath Tokens 
+| Action                                     | Oauth Url     |
+|:-------------------------------------------|:--------------|
+| Run Sentinel/Log Analytics/AzMonitor Query | log analytics |
+| Run M365D XDR AHT Query                    | graph         |
+| List Sentinel Rules                        | arm           |
 
 
 # Reference Links
