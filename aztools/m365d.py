@@ -6,10 +6,10 @@ import datetime
 class XdrRunAhtQuery:
 
 
-    def __init__(self, oauth_token, query_text):
+    def __init__(self, graph_oauth_token, query_text):
 
         # parameters
-        self.oath_token = oauth_token
+        self.oath_token = graph_oauth_token
         self.query_text = query_text
 
         # attributes
@@ -40,10 +40,10 @@ class XdrRunAhtQuery:
 class XdrListCustomRules:
 
 
-    def __init__(self, oauth_token):
+    def __init__(self, graph_oauth_token):
 
         # parameter
-        self.oath_token = oauth_token
+        self.oath_token = graph_oauth_token
 
         # attributes
         self.request_url = 'https://graph.microsoft.com/beta/security/rules/detectionRules'
