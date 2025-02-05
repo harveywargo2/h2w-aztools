@@ -5,10 +5,10 @@ import pandas as pd
 class AzMonitorRunQuery:
 
 
-    def __init__(self, oauth_token, query_text, workspace_id):
+    def __init__(self, la_oauth_token, query_text, workspace_id):
 
         # parameters
-        self.oauth_token = oauth_token
+        self.oauth_token = la_oauth_token
         self.query_text = query_text
         self.workspace_id = workspace_id
 
